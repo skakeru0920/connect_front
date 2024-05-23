@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-	const [list, setList] = useState([
-		'翻訳アプリをダウンロードする',
-		'戸締りをする',
-		'猫を抱きしめる',
-		'荷造りをする',
-		'航空券を買う',
-		'もう一度猫を抱きしめる',
-	]);
+	const [list, setList] = useState([]);
+
+	useEffect(() => {
+		fetch('http://localhost:3000/api/list')
+			.then((response) => response.json())
+			.then((data) => setList(data));
+	}, []);
 
 	return (
 		<>
