@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+const cors = require('cors');
+app.use(cors());
+
 const list = [
 	'翻訳アプリをダウンロードする',
 	'戸締りをする',
