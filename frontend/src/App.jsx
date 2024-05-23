@@ -5,14 +5,26 @@ function App() {
 	const [newTask, setNewTask] = useState('');
 
 	useEffect(() => {
+		fetchTasks();
+	}, []);
+
+	const fetchTasks = () => {
 		fetch('/api/list')
 			.then((response) => response.json())
 			.then((data) => setList(data));
-	}, []);
+	};
 
 	const handleAddTask = () => {
-		setList([...list, newTask]);
-		setNewTask('');
+		fetch('/api/list', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ task: newTask }),
+		}).then(() => {
+			setNewTask('');
+			fetchTasks();
+		});
 	};
 
 	return (
