@@ -13,6 +13,8 @@ const list = [
 	'もう一度猫を抱きしめる',
 ];
 
+app.use('/', express.static(__dirname + '/frontend/dist'));
+
 app.get('/api/list', (req, res) => {
 	res.json(list);
 });

@@ -4,7 +4,7 @@ function App() {
 	const [list, setList] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:3000/api/list')
+		fetch('/api/list')
 			.then((response) => response.json())
 			.then((data) => setList(data));
 	}, []);
