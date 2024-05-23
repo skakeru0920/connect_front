@@ -5,6 +5,8 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 3000;
+
 const list = [
 	'翻訳アプリをダウンロードする',
 	'戸締りをする',
@@ -17,6 +19,7 @@ const list = [
 app.use('/', express.static(__dirname + '/frontend/dist'));
 
 app.get('/api/list', (req, res) => {
+	console.log('GET /api/list');
 	res.json(list);
 });
 
@@ -28,6 +31,6 @@ app.post('/api/list', (req, res) => {
 	res.end();
 });
 
-app.listen(3000, () => {
-	console.log('Server running on http://localhost:3000');
+app.listen(PORT, () => {
+	console.log('Server running on PORT', PORT);
 });
