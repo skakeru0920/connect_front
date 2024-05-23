@@ -18,6 +18,15 @@ app.use('/', express.static(__dirname + '/frontend/dist'));
 app.get('/api/list', (req, res) => {
 	res.json(list);
 });
+
+app.post('/api/list', express.json(), (req, res) => {
+	const { task } = req.body;
+	list.push(task);
+	console.log('list update', list);
+	res.status(201);
+	res.end();
+});
+
 app.listen(3000, () => {
 	console.log('Server running on http://localhost:3000');
 });
